@@ -1,11 +1,13 @@
-# Æfingabókin mín – GitHub Pages / PWA
+# Æfingadagbók – GitHub Pages
 
-Hladdu öllum skrám og möppum í þessu pakkasafni í rót GitHub repository.
+## Setja upp
+1. Afritaðu öll gögn úr þessari möppu í rót GitHub repository-ins `Aefingadagbok`.
+2. Settu frumskjölin í `documents/` og notaðu nákvæm skráarheit úr `documents/README.txt`.
+3. Í GitHub: **Settings → Pages → Deploy from a branch → main / root → Save**.
+4. Síðan birtist á GitHub Pages slóð repository-ins.
 
-GitHub: Settings → Pages → Deploy from a branch → main → /(root) → Save.
+## Uppfæra efni
+Vikur, hlaupaæfingar, sjúkraþjálfun og skjalalisti eru í `data/content.js`. Engin uppsetning, npm eða build-skipun er nauðsynleg.
 
-## Setja á heimaskjá
-- iPhone/iPad: opna síðuna í Safari → Share → Add to Home Screen.
-- Android: opna síðuna í Chrome → Install app / Add to Home screen.
-
-Gögn vistast staðbundið í vafranum/tækinu. Notaðu „Flytja út gögn“ reglulega sem öryggisafrit, sérstaklega áður en skipt er um síma eða vafragögn hreinsuð.
+## Athugið
+Gögnin sem fylgja eru unnin úr tiltæku efni Excel-skjalsins og sjúkraþjálfunarskjalsins. Tímabil í Excel voru lesin sem raðnúmer og eru því sýnd óbreytt.
