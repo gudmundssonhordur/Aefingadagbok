@@ -1,1 +1,153 @@
-<!doctype html><html lang="is"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#113f36"><title>Æfingarnar mínar</title><link rel="stylesheet" href="styles.css"></head><body><header><div class="eyebrow">ÆFINGARNAR MÍNAR</div><h1>Allt prógrammið á einum stað.</h1><p>Vikuskipt hlaupaprógramm, æfingasafn, sjúkraþjálfun og frumskjöl.</p></header><main><section id="home" class="view active"><h2>Flokkar</h2><div class="tiles"><button onclick="go('program')"><b>🏃 Hlaupaprógramm</b><span>Vikur og æfingar úr Excel</span></button><button onclick="go('running')"><b>⏱ Hlaupaæfingar</b><span>Æfingasvæði og útskýringar</span></button><button onclick="filterPhysio('Styrkur')"><b>💪 Styrkur</b><span>Styrktar- og mjaðmaæfingar</span></button><button onclick="filterPhysio('Teygja')"><b>🤸 Teygjur</b><span>Teygjur og hreyfanleiki</span></button><button onclick="go('physio')"><b>🩺 Sjúkraþjálfun</b><span>Allt sjúkraþjálfunarprógrammið</span></button><button onclick="go('docs')"><b>📁 Skjöl</b><span>PDF og Excel frumskjöl</span></button></div></section><section id="program" class="view"><div class="bar"><h2>Hlaupaprógramm</h2><button onclick="go('home')">Til baka</button></div><div id="weeks"></div></section><section id="running" class="view"><div class="bar"><h2>Hlaupaæfingar</h2><button onclick="go('home')">Til baka</button></div><div id="zones" class="cards"></div></section><section id="physio" class="view"><div class="bar"><div><h2 id="physioTitle">Sjúkraþjálfun</h2><p id="physioSub">Styrkur, jafnvægi, hreyfanleiki og teygjur</p></div><button onclick="go('home')">Til baka</button></div><div id="physioCards" class="cards"></div></section><section id="docs" class="view"><div class="bar"><h2>Frumskjöl</h2><button onclick="go('home')">Til baka</button></div><p class="hint">Settu skjölin í <code>documents</code>-möppuna með skráarheitunum hér að neðan. Þá virka hnapparnir sjálfkrafa.</p><div id="docsList" class="cards"></div></section></main><nav><button onclick="go('home')">Heim</button><button onclick="go('program')">Prógramm</button><button onclick="go('physio')">Æfingar</button><button onclick="go('docs')">Skjöl</button></nav><script src="data/content.js"></script><script src="app.js"></script></body></html>
+<!doctype html>
+<html lang="is">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#113f36">
+  <title>Æfingarnar mínar</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+<header>
+  <div class="eyebrow">ÆFINGARNAR MÍNAR</div>
+  <h1>Allt prógrammið á einum stað.</h1>
+  <p>Vikuskipt hlaupaprógramm, æfingasafn, sjúkraþjálfun og frumskjöl.</p>
+</header>
+
+<main>
+
+  <section id="home" class="view active">
+
+    <h2>Flokkar</h2>
+
+    <div class="tiles">
+
+      <button onclick="go('program')">
+        <b>🏃 Hlaupaprógramm</b>
+        <span>Vikur og æfingar úr Excel</span>
+      </button>
+
+      <button onclick="go('running')">
+        <b>⏱ Hlaupaæfingar</b>
+        <span>Æfingasvæði og útskýringar</span>
+      </button>
+
+      <button onclick="showCollection('strength','Styrkur','Úr Styrktaræfingar fyrir hlaupara')">
+        <b>💪 Styrkur</b>
+        <span>Úr styrktaræfingaskjalinu</span>
+      </button>
+
+      <button onclick="showCollection('stretches','Teygjur','Úr Hreyfiteygjur fyrir hlaupara')">
+        <b>🤸 Teygjur</b>
+        <span>Hreyfiteygjur og liðleiki</span>
+      </button>
+
+      <button onclick="showCollection('lifting','Lyftingar','Úr Lyftingar fyrir hlaupara')">
+        <b>🏋️ Lyftingar</b>
+        <span>Lyftingar og tækni</span>
+      </button>
+
+      <button onclick="showPhysio()">
+        <b>🩺 Sjúkraþjálfun</b>
+        <span>Sjúkraþjálfunarprógrammið</span>
+      </button>
+
+      <button onclick="go('docs')">
+        <b>📁 Skjöl</b>
+        <span>PDF og Excel frumskjöl</span>
+      </button>
+
+    </div>
+
+  </section>
+
+
+  <section id="program" class="view">
+
+    <div class="bar">
+      <h2>Hlaupaprógramm</h2>
+      <button onclick="go('home')">Til baka</button>
+    </div>
+
+    <div id="weeks"></div>
+
+  </section>
+
+
+  <section id="running" class="view">
+
+    <div class="bar">
+      <h2>Hlaupaæfingar</h2>
+      <button onclick="go('home')">Til baka</button>
+    </div>
+
+    <div id="zones" class="cards"></div>
+
+  </section>
+
+
+  <section id="collection" class="view">
+
+    <div class="bar">
+
+      <div>
+        <h2 id="collectionTitle"></h2>
+        <p id="collectionSub"></p>
+      </div>
+
+      <button onclick="go('home')">Til baka</button>
+
+    </div>
+
+    <div id="collectionCards" class="cards"></div>
+
+  </section>
+
+
+  <section id="physio" class="view">
+
+    <div class="bar">
+
+      <div>
+        <h2>Sjúkraþjálfun</h2>
+        <p>Styrkur, jafnvægi, hreyfanleiki og teygjur</p>
+      </div>
+
+      <button onclick="go('home')">Til baka</button>
+
+    </div>
+
+    <div id="physioCards" class="cards"></div>
+
+  </section>
+
+
+  <section id="docs" class="view">
+
+    <div class="bar">
+      <h2>Frumskjöl</h2>
+      <button onclick="go('home')">Til baka</button>
+    </div>
+
+    <div id="docsList" class="cards"></div>
+
+  </section>
+
+</main>
+
+
+<nav>
+  <button onclick="go('home')">Heim</button>
+  <button onclick="go('program')">Prógramm</button>
+  <button onclick="showCollection('strength','Styrkur','Úr Styrktaræfingar fyrir hlaupara')">Æfingar</button>
+  <button onclick="go('docs')">Skjöl</button>
+</nav>
+
+
+<script src="data/content.js"></script>
+<script src="app.js"></script>
+
+</body>
+</html>
